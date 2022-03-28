@@ -1,5 +1,5 @@
 import styled from "@emotion/styled"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 const Label = styled.label`
     display: block;
@@ -19,6 +19,20 @@ const Select = styled.select`
 export const useSelectMonedas = (label, opciones) => {
 
     const [state, setState] = useState('')
+
+    useEffect(() => {
+        const consultarApi = async () => {
+            const url = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD'
+
+            const respuesta = await fetch(url)
+            const resultado = await respuesta.json()
+
+            console.log(resultado);
+        }
+
+        consultarApi();
+    }, [])
+
 
     const selectMonedas = () => (
         <>
