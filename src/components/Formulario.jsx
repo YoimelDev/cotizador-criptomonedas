@@ -5,6 +5,7 @@ import { useSelectMonedas } from "../hooks/useSelectMonedas"
 const InputSubmit = styled.input`
     width: 100%;
     padding: .625rem;
+    margin-top: 1.875rem;
     background-color: #9497FF;
     color: #fff;
     font-weight: 700;
