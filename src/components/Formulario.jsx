@@ -23,11 +23,13 @@ const InputSubmit = styled.input`
 
 export const Formulario = () => {
 
-    const [SelectMonedas] = useSelectMonedas('Moneda', monedas)
+    const [moneda, SelectMonedas] = useSelectMonedas('Moneda', monedas)
 
     return (
         <form>
             <SelectMonedas />
+
+            {moneda}
 
             <InputSubmit
                 type='submit'
