@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import imagenCripto from './img/imagen-criptos.png'
 import { Formulario } from './components/Formulario'
 import { Resultado } from './components/Resultado'
+import { Spinner } from './components/Spinner'
 
 const Contenedor = styled.div`
   max-width: 56.25rem;
@@ -46,9 +47,12 @@ function App() {
 
   const [monedas, setMonedas] = useState({})
   const [resultado, setResultado] = useState({})
+  const [charge, setcharge] = useState(false)
 
   useEffect(() => {
     if (Object.keys(monedas).length > 0) {
+      setcharge(true)
+
       const cotizarCripto = async () => {
         const { moneda, criptomoneda } = monedas
 
@@ -58,6 +62,8 @@ function App() {
         const resultado = await respuesta.json()
 
         setResultado(resultado.DISPLAY[criptomoneda][moneda]);
+
+        setcharge(false)
       }
 
       cotizarCripto()
@@ -79,6 +85,7 @@ function App() {
           setMonedas={setMonedas}
         />
 
+        {charge && <p>Cargando</p>}
         {resultado.PRICE && <Resultado resultado={resultado} />}
       </div>
 
